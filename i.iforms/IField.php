@@ -4,25 +4,28 @@ abstract class IField{
     protected $size;
     protected $value;
     protected $editable;
-    protected $table;
+    protected $tag;
     
     function __construct($name) {
         self::setEditable(true);
         self::setName($name);
         self::setSize(200);
+        
         $styleOn = new IStyle('ifield');
         $styleOn->border = 'solid';
         $styleOn->border_color = '#a0a0a0';
         $styleOn->border_width='1px';
         $styleOn->z_index='1';
+        
         $styleOff = new IStyle('ifield_disable');
         $styleOff->border = 'solid';
         $styleOff->border_color='#a0a0a0';
         $styleOff->border_width='1px';
-        $styleOff->background_color='#e0e0e0';
+        $styleOff->background_color='#ff0066';
         $styleOff->color='#a0a0a0';
-        $styleOn->show();
-        $styleOff->show();
+        
+        //$styleOn->show();
+        //$styleOff->show();
         $this->tag = new IElement('input');
         $this->tag->class = 'ifield';
     }
@@ -45,7 +48,7 @@ abstract class IField{
         return $this->editable;
     }
     function setProperty($name, $value){
-        $this->tag->name=$value;
+        $this->tag->$name=$value;
     }
     function setSize($size){
         $this->size=$size;
